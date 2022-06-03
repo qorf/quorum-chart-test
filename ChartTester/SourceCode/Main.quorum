@@ -1,0 +1,69 @@
+use Libraries.Game.Game
+use Libraries.Containers.Array
+use Libraries.Interface.Controls.Charts.Chart
+use Libraries.Interface.Events.KeyboardListener
+use Libraries.Interface.Events.KeyboardEvent
+
+class Main is Game, KeyboardListener
+    Array<Chart> bars
+    Array<Array<Chart>> charts
+    Chart currentChart = undefined
+    integer index = 0
+    integer type = 0
+
+    action Main
+        StartGame()
+    end
+
+    action CreateGame
+        SetScreenSize(1000,1000)
+        LoadBarCharts()
+
+        //other chart types should go in their own array.
+
+        currentChart = bars:Get(index)
+        Add(currentChart)
+        KeyboardListener e
+        AddKeyboardListener(me)
+    end
+
+    action PressedKey(KeyboardEvent event)
+        //I think up left and right should go through the chart types
+        //up and down for the chart types. That way we can flip through them all easily.
+        if event:keyCode = event:RIGHT
+            index = index + 1
+        elseif event:keyCode = event:LEFT
+            index = index - 1
+        end
+
+        if index < 0
+            index = 0
+        end
+
+        //get the current type
+        Array<Chart> types = charts:Get(type)
+        if index > types:GetSize() - 1
+            index = types:GetSize() - 1
+        end
+        Remove(currentChart)
+        currentChart = types:Get(index)
+        Add(currentChart)
+    end
+
+    action LoadBarCharts
+        BarChartAnnotationTest chart1
+        BarChartHorizontalTest chart2
+        BarChartNegativeValueTest chart3
+        BarChartNoColumnOneFactorTest chart4
+
+        bars:Add(chart1:CreateChart())
+        bars:Add(chart2:CreateChart())
+        bars:Add(chart3:CreateChart())
+        bars:Add(chart4:CreateChart())
+        charts:Add(bars)
+    end
+
+    action Update(number seconds)
+
+    end
+end

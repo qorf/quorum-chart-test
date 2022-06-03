@@ -1,5 +1,6 @@
 use Libraries.Compute.Statistics.DataFrame
 use Libraries.Interface.Controls.Charts.BarChart
+use Libraries.Interface.Controls.Charts.Chart
 
 class BarChartNegativeValueTest
     action CreateChart() returns Chart
