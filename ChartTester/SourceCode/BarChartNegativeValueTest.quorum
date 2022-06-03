@@ -1,0 +1,17 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.BarChart
+
+class BarChartNegativeValueTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Negative1")
+        frame:AddSelectedFactors("Factor1")
+        
+        BarChart chart = frame:BarChart()
+        chart:SetTitle("Negative Value Test")
+        chart:SetSubtitle("One Column - One Factor")
+        
+        return chart
+    end
+end
