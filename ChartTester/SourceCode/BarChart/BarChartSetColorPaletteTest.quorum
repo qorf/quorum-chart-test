@@ -1,0 +1,21 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.BarChart
+use Libraries.Interface.Controls.Charts.Chart
+
+class BarChartSetColorPaletteTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedColumns("Column3")
+        frame:AddSelectedFactors("Factor1")
+        
+        BarChart chart = frame:BarChart()
+        chart:SetTitle("BarChart Set Color Palette To Calm")
+        chart:SetSubtitle("Three Columns - One Factor")
+        chart:SetColorPaletteToCalm()
+        
+        return chart
+    end
+end

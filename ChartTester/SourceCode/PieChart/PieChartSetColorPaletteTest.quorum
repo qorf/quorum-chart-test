@@ -1,0 +1,18 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.PieChart
+use Libraries.Interface.Controls.Charts.Chart
+ 
+class PieChartSetColorPaletteTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedFactors("Factor1")
+        
+        PieChart chart = frame:PieChart()
+        chart:SetTitle("PieChart Set Color Palette To Magma")
+        chart:SetSubtitle("One Factor")
+        chart:SetColorPaletteToMagma()
+    
+        return chart
+    end
+end

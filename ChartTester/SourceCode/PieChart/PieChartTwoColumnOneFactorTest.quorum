@@ -1,0 +1,18 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.PieChart
+use Libraries.Interface.Controls.Charts.Chart
+ 
+class PieChartTwoColumnOneFactorTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedFactors("Factor1")
+        
+        PieChart chart = frame:PieChart()
+        chart:SetTitle("PieChart Two Columns - One Factor")
+        
+        return chart
+    end
+end

@@ -1,0 +1,22 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.BoxPlot
+use Libraries.Interface.Controls.Charts.Chart
+
+class BoxPlotSeparateByFactorHorizontalTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedColumns("Column3")
+        frame:AddSelectedFactors("Factor1")
+        
+        BoxPlot chart = frame:BoxPlot()
+        chart:SetTitle("BoxPlot Separate By Factor Horizontal Test")
+        chart:SetSubtitle("Three Columns - One Factor")
+        chart:SeparateByFactor(2)
+        chart:SetOrientationToHorizontal()
+        
+        return chart
+    end
+end

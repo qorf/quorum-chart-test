@@ -1,18 +1,18 @@
 use Libraries.Compute.Statistics.DataFrame
-use Libraries.Interface.Controls.Charts.BarChart
+use Libraries.Interface.Controls.Charts.ViolinPlot
 use Libraries.Interface.Controls.Charts.Chart
 
-class BarChartNegativeValueTest
+class ViolinPlotNegativeValueTest is ChartTest
     action CreateChart() returns Chart
         DataFrame frame
         frame:Load("ChartTestData.csv")
         frame:AddSelectedColumns("Negative1")
         frame:AddSelectedFactors("Factor1")
         
-        BarChart chart = frame:BarChart()
-        chart:SetTitle("Negative Value Test")
+        ViolinPlot chart = frame:ViolinPlot()
+        chart:SetTitle("ViolinPlot Negative Value Test")
         chart:SetSubtitle("One Column - One Factor")
-        
+
         return chart
     end
 end

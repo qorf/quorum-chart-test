@@ -1,0 +1,19 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.Histogram
+use Libraries.Interface.Controls.Charts.Chart
+
+class HistogramTrendlineHorizontalTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        
+        Histogram chart = frame:Histogram()
+        chart:SetTitle("Histogram Trendline Horizontal Test")
+        chart:SetSubtitle("One Column")
+        chart:ShowTrendLine(true)
+        chart:SetOrientationToHorizontal()
+
+        return chart
+    end
+end

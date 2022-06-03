@@ -1,0 +1,22 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.Histogram
+use Libraries.Interface.Controls.Charts.Chart
+
+class HistogramOverlayBarsHorizontalTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedColumns("Column3")
+        
+        Histogram chart = frame:Histogram()
+        chart:SetTitle("Histogram Overlay Bars Horizontal Test")
+        chart:SetSubtitle("Three Columns")
+        chart:SeparateBySeries(false)
+        chart:OverlayBars(true)
+        chart:SetOrientationToHorizontal()
+        
+        return chart
+    end
+end

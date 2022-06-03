@@ -1,0 +1,21 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.PieChart
+use Libraries.Interface.Controls.Charts.Chart
+ 
+class PieChartSeparateBySeriesTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedColumns("Column3")
+        frame:AddSelectedFactors("Factor1")
+        
+        PieChart chart = frame:PieChart()
+        chart:SetTitle("PieChart Separate By Series Test")
+        chart:SetSubtitle("Three Columns - One Factor")
+        chart:SeparateBySeries(3)
+    
+        return chart
+    end
+end

@@ -1,0 +1,18 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.PieChart
+use Libraries.Interface.Controls.Charts.Chart
+ 
+class PieChartSeparateByFactorNoColumnTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedFactors("Factor1")
+        
+        PieChart chart = frame:PieChart()
+        chart:SetTitle("PieChart Separate By Factor Test")
+        chart:SetSubtitle("No Columns - One Factor")
+        chart:SeparateByFactor(2)
+    
+        return chart
+    end
+end

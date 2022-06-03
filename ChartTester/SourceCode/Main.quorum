@@ -3,10 +3,17 @@ use Libraries.Containers.Array
 use Libraries.Interface.Controls.Charts.Chart
 use Libraries.Interface.Events.KeyboardListener
 use Libraries.Interface.Events.KeyboardEvent
+use Libraries.Interface.Layouts.ManualLayout
 
 class Main is Game, KeyboardListener
-    Array<Chart> bars
-    Array<Array<Chart>> charts
+    Array<ChartTest> bars
+    Array<ChartTest> hists
+    Array<ChartTest> pies
+    Array<ChartTest> boxes
+    Array<ChartTest> violins
+    Array<ChartTest> lines
+    Array<ChartTest> scats
+    Array<Array<ChartTest>> charts
     Chart currentChart = undefined
     integer index = 0
     integer type = 0
@@ -16,51 +23,269 @@ class Main is Game, KeyboardListener
     end
 
     action CreateGame
+        ManualLayout layout
+        SetLayout(layout)
+
         SetScreenSize(1000,1000)
         LoadBarCharts()
+        LoadHistograms()
+        LoadPieCharts()
+        LoadBoxPlots()
+        LoadViolinPlots()
+//        LoadLineCharts()
+//        LoadScatterPlots()
+//        LoadGeoMaps()
 
         //other chart types should go in their own array.
-
-        currentChart = bars:Get(index)
+        currentChart = bars:Get(index):CreateChart()
         Add(currentChart)
         KeyboardListener e
         AddKeyboardListener(me)
     end
 
     action PressedKey(KeyboardEvent event)
-        //I think up left and right should go through the chart types
+        //I think up left and right should go through the chart indices
         //up and down for the chart types. That way we can flip through them all easily.
         if event:keyCode = event:RIGHT
             index = index + 1
         elseif event:keyCode = event:LEFT
-            index = index - 1
+            if index > 0
+                index = index - 1
+            end
         end
 
-        if index < 0
-            index = 0
+        if event:keyCode = event:UP
+            if type < charts:GetSize() - 1
+                type = type + 1
+            end
+        elseif event:keyCode = event:DOWN
+            if type > 0
+                type = type - 1
+            end
         end
 
         //get the current type
-        Array<Chart> types = charts:Get(type)
+        Array<ChartTest> types = charts:Get(type)
         if index > types:GetSize() - 1
             index = types:GetSize() - 1
         end
         Remove(currentChart)
-        currentChart = types:Get(index)
+        currentChart = types:Get(index):CreateChart()
         Add(currentChart)
+        currentChart:Save("chart.svg")
     end
 
     action LoadBarCharts
+        BarChartAnnotationHorizontalTest chart0
         BarChartAnnotationTest chart1
         BarChartHorizontalTest chart2
         BarChartNegativeValueTest chart3
         BarChartNoColumnOneFactorTest chart4
+        BarChartOneColumnTwoFactorTest chart5
+        BarChartSeparateByFactorHorizontalTest chart6
+        BarChartSeparateByFactorTest chart7
+        BarChartSeparateBySeriesHorizontalTest chart8
+        BarChartSeparateBySeriesTest chart9
+        BarChartSetColorPaletteTest chart10
+        BarChartStackBarsHorizontalTest chart11
+        BarChartStackBarsTest chart12
+        BarChartTwoColumnNoFactorTest chart13
+        BarChartTwoColumnOneFactorTest chart14
 
-        bars:Add(chart1:CreateChart())
-        bars:Add(chart2:CreateChart())
-        bars:Add(chart3:CreateChart())
-        bars:Add(chart4:CreateChart())
+        bars:Add(chart0)
+        bars:Add(chart1)
+        bars:Add(chart2)
+        bars:Add(chart3)
+        bars:Add(chart4)
+        bars:Add(chart5)
+        bars:Add(chart6)
+        bars:Add(chart7)
+        bars:Add(chart8)
+        bars:Add(chart9)
+        bars:Add(chart10)
+        bars:Add(chart11)
+        bars:Add(chart12)
+        bars:Add(chart13)
+        bars:Add(chart14)
         charts:Add(bars)
+    end
+
+    action LoadHistograms
+        HistogramAnnotationHorizontalTest chart0
+        HistogramAnnotationTest chart1
+        HistogramHorizontalTest chart2
+        HistogramNegativeValueTest chart3
+        HistogramOverlayBarsHorizontalTest chart4
+        HistogramOverlayBarsTest chart5
+        HistogramSeparateBySeriesHorizontalTest chart6
+        HistogramSeparateBySeriesTest chart7
+        HistogramSeparateBySeriesTrendlineTest chart8
+        HistogramSetBinWidthTest chart9
+        HistogramSetColorPaletteTest chart10
+        HistogramStackBarsHorizontalTest chart11
+        HistogramStackBarsTest chart12
+        HistogramTrendlineHorizontalTest chart13
+        HistogramTrendlineTest chart14
+        HistogramTwoColumnNoSeparationTest chart15
+
+        hists:Add(chart0)
+        hists:Add(chart1)
+        hists:Add(chart2)
+        hists:Add(chart3)
+        hists:Add(chart4)
+        hists:Add(chart5)
+        hists:Add(chart6)
+        hists:Add(chart7)
+        hists:Add(chart8)
+        hists:Add(chart9)
+        hists:Add(chart10)
+        hists:Add(chart11)
+        hists:Add(chart12)
+        hists:Add(chart13)
+        hists:Add(chart14)
+        hists:Add(chart15)
+        charts:Add(hists)
+    end
+
+    action LoadPieCharts
+        PieChartDonutHoleTest chart0
+        PieChartNoColumnOneFactorTest chart1
+        PieChartOneColumnOneFactorTest chart2
+        PieChartPercentAnnotationTest chart3
+        PieChartSeparateByFactorNoColumnTest chart4
+        PieChartSeparateByFactorTest chart5
+        PieChartSeparateBySeriesNoFactorTest chart6
+        PieChartSeparateBySeriesTest chart7
+        PieChartSetColorPaletteTest chart8
+        PieChartTwoColumnNoFactorTest chart9
+        PieChartTwoColumnOneFactorTest chart10
+        PieChartValueAnnotationTest chart11
+
+        pies:Add(chart0)
+        pies:Add(chart1)
+        pies:Add(chart2)
+        pies:Add(chart3)
+        pies:Add(chart4)
+        pies:Add(chart5)
+        pies:Add(chart6)
+        pies:Add(chart7)
+        pies:Add(chart8)
+        pies:Add(chart9)
+        pies:Add(chart10)
+        pies:Add(chart11)
+        charts:Add(pies)
+    end
+
+    action LoadBoxPlots
+        BoxPlotHideOutliersTest chart0
+        BoxPlotHorizontalTest chart1
+        BoxPlotNegativeValueTest chart2
+        BoxPlotOneColumnTwoFactorTest chart3
+        BoxPlotSeparateByFactorHorizontalTest chart4
+        BoxPlotSeparateByFactorTest chart5
+        BoxPlotSeparateBySeriesHorizontalTest chart6
+        BoxPlotSeparateBySeriesTest chart7
+        BoxPlotSetColorPaletteTest chart8
+        BoxPlotTwoColumnNoFactorTest chart9
+        BoxPlotTwoColumnOneFactorTest chart10
+
+        boxes:Add(chart0)
+        boxes:Add(chart1)
+        boxes:Add(chart2)
+        boxes:Add(chart3)
+        boxes:Add(chart4)
+        boxes:Add(chart5)
+        boxes:Add(chart6)
+        boxes:Add(chart7)
+        boxes:Add(chart8)
+        boxes:Add(chart9)
+        boxes:Add(chart10)
+        charts:Add(boxes)
+    end
+
+    action LoadViolinPlots
+        ViolinPlotHorizontalTest chart0
+        ViolinPlotNegativeValueTest chart1
+        ViolinPlotOneColumnTwoFactorTest chart2
+        ViolinPlotSeparateByFactorHorizontalTest chart3
+        ViolinPlotSeparateByFactorTest chart4
+//        BoxPlotSeparateByFactorTest chart5
+//        BoxPlotSeparateBySeriesHorizontalTest chart6
+//        BoxPlotSeparateBySeriesTest chart7
+//        BoxPlotSetColorPaletteTest chart8
+//        BoxPlotTwoColumnNoFactorTest chart9
+//        BoxPlotTwoColumnOneFactorTest chart10
+
+        violins:Add(chart0)
+        violins:Add(chart1)
+        violins:Add(chart2)
+        violins:Add(chart3)
+        violins:Add(chart4)
+//        violins:Add(chart5)
+//        violins:Add(chart6)
+//        violins:Add(chart7)
+//        violins:Add(chart8)
+//        violins:Add(chart9)
+//        violins:Add(chart10)
+        charts:Add(violins)
+    end
+
+//    action LoadLineCharts
+//        BoxPlotHideOutliersTest chart0
+//        BoxPlotHorizontalTest chart1
+//        BoxPlotNegativeValueTest chart2
+//        BoxPlotOneColumnTwoFactorTest chart3
+//        BoxPlotSeparateByFactorHorizontalTest chart4
+//        BoxPlotSeparateByFactorTest chart5
+//        BoxPlotSeparateBySeriesHorizontalTest chart6
+//        BoxPlotSeparateBySeriesTest chart7
+//        BoxPlotSetColorPaletteTest chart8
+//        BoxPlotTwoColumnNoFactorTest chart9
+//        BoxPlotTwoColumnOneFactorTest chart10
+//
+//        lines:Add(chart0)
+//        lines:Add(chart1)
+//        lines:Add(chart2)
+//        lines:Add(chart3)
+//        lines:Add(chart4)
+//        lines:Add(chart5)
+//        lines:Add(chart6)
+//        lines:Add(chart7)
+//        lines:Add(chart8)
+//        lines:Add(chart9)
+//        lines:Add(chart10)
+//        charts:Add(lines)
+//    end
+
+//    action LoadScatterPlots
+//        BoxPlotHideOutliersTest chart0
+//        BoxPlotHorizontalTest chart1
+//        BoxPlotNegativeValueTest chart2
+//        BoxPlotOneColumnTwoFactorTest chart3
+//        BoxPlotSeparateByFactorHorizontalTest chart4
+//        BoxPlotSeparateByFactorTest chart5
+//        BoxPlotSeparateBySeriesHorizontalTest chart6
+//        BoxPlotSeparateBySeriesTest chart7
+//        BoxPlotSetColorPaletteTest chart8
+//        BoxPlotTwoColumnNoFactorTest chart9
+//        BoxPlotTwoColumnOneFactorTest chart10
+//
+//        scats:Add(chart0)
+//        scats:Add(chart1)
+//        scats:Add(chart2)
+//        scats:Add(chart3)
+//        scats:Add(chart4)
+//        scats:Add(chart5)
+//        scats:Add(chart6)
+//        scats:Add(chart7)
+//        scats:Add(chart8)
+//        scats:Add(chart9)
+//        scats:Add(chart10)
+//        charts:Add(scats)
+//    end
+
+    action LoadGeoMaps
+
     end
 
     action Update(number seconds)

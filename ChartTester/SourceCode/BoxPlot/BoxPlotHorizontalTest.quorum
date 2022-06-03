@@ -1,8 +1,8 @@
 use Libraries.Compute.Statistics.DataFrame
-use Libraries.Interface.Controls.Charts.BarChart
+use Libraries.Interface.Controls.Charts.BoxPlot
 use Libraries.Interface.Controls.Charts.Chart
 
-class BarChartHorizontalTest
+class BoxPlotHorizontalTest is ChartTest
     action CreateChart() returns Chart
         DataFrame frame
         frame:Load("ChartTestData.csv")
@@ -11,12 +11,11 @@ class BarChartHorizontalTest
         frame:AddSelectedColumns("Column3")
         frame:AddSelectedFactors("Factor1")
         
-        BarChart chart = frame:BarChart()
-        chart:SetTitle("Horizontal Test")
+        BoxPlot chart = frame:BoxPlot()
+        chart:SetTitle("BoxPlot Horizontal Test")
         chart:SetSubtitle("Three Columns - One Factor")
         chart:SetOrientationToHorizontal()
-
-        return chart    
+        
+        return chart
     end
-
 end

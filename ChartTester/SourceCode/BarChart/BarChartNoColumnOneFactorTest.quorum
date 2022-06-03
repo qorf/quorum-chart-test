@@ -1,0 +1,16 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.BarChart
+use Libraries.Interface.Controls.Charts.Chart
+
+class BarChartNoColumnOneFactorTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedFactors("Factor1")
+        
+        BarChart chart = frame:BarChart()
+        chart:SetTitle("BarChart No Columns - One Factor")
+
+        return chart
+    end
+end

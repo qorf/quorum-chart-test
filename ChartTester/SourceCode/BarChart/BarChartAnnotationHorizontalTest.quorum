@@ -1,0 +1,23 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.BarChart
+use Libraries.Interface.Controls.Charts.Chart
+
+class BarChartAnnotationHorizontalTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedColumns("Column3")
+        frame:AddSelectedFactors("Factor1")
+        
+        BarChart chart = frame:BarChart()
+        chart:SetTitle("BarChart Annotation Horizontal Test")
+        chart:SetSubtitle("Three Columns - One Factor")
+        chart:ShowAnnotations(true)
+        chart:SetOrientationToHorizontal()
+
+        return chart
+    end
+end
+
