@@ -1,0 +1,9 @@
+use Libraries.Game.FocusManager
+use Libraries.Interface.Item
+class FocusManagerTest is FocusManager
+    action SetFocus(Item focusItem)
+        parent:FocusManager:SetFocus(focusItem)
+
+        output "Testing: " + focusItem:GetName()
+    end
+end

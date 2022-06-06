@@ -26,6 +26,10 @@ class Main is Game, KeyboardListener
         ManualLayout layout
         SetLayout(layout)
 
+        //for basic testing on platforms where accessibility is not supported.
+        FocusManagerTest newManager
+        SetFocusManager(newManager)
+
         SetScreenSize(1000,1000)
         LoadBarCharts()
         LoadHistograms()
@@ -72,7 +76,8 @@ class Main is Game, KeyboardListener
         Remove(currentChart)
         currentChart = types:Get(index):CreateChart()
         Add(currentChart)
-        currentChart:Save("chart.svg")
+        //this currently crashes
+        //currentChart:Save("chart.svg")
     end
 
     action LoadBarCharts
