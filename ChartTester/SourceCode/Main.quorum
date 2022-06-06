@@ -83,7 +83,6 @@ class Main is Game, KeyboardListener
         Remove(currentChart)
         currentChart = types:Get(index):CreateChart()
         Add(currentChart)
-        currentChart:Save("chart.svg")
     end
 
     action LoadBarCharts
