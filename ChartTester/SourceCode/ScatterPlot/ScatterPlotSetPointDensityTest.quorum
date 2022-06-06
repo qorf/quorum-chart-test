@@ -1,8 +1,8 @@
 use Libraries.Compute.Statistics.DataFrame
-use Libraries.Interface.Controls.Charts.ViolinPlot
+use Libraries.Interface.Controls.Charts.ScatterPlot
 use Libraries.Interface.Controls.Charts.Chart
 
-class ViolinPlotSplitPlotTest is ChartTest
+class ScatterPlotSetPointDensityTest is ChartTest
     action CreateChart() returns Chart
         DataFrame frame
         frame:Load("ChartTestData.csv")
@@ -10,11 +10,11 @@ class ViolinPlotSplitPlotTest is ChartTest
         frame:AddSelectedColumns("Column2")
         frame:AddSelectedFactors("Factor1")
         
-        ViolinPlot chart = frame:ViolinPlot()
-        chart:SetTitle("Split Plot Test")
+        ScatterPlot chart = frame:ScatterPlot()
+        chart:SetTitle("ScatterPlot Set Point Density To 10 Test")
         chart:SetSubtitle("Two Columns - One Factor")
-        chart:SplitPlot(true)
-
+        chart:SetPointDensity(10)
+        
         return chart
     end
 end

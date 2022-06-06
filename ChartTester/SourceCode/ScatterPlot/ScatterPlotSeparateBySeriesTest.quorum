@@ -1,0 +1,22 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.ScatterPlot
+use Libraries.Interface.Controls.Charts.Chart
+
+class ScatterPlotSeparateBySeriesTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Column1")
+        frame:AddSelectedColumns("Column2")
+        frame:AddSelectedColumns("Column3")
+        frame:AddSelectedColumns("Negative1")
+        frame:AddSelectedColumns("Negative2")
+        
+        ScatterPlot chart = frame:ScatterPlot()
+        chart:SetTitle("ScatterPlot Separate By Series Test")
+        chart:SetSubtitle("Five Columns")
+        chart:SeparateBySeries(2)
+        
+        return chart
+    end
+end

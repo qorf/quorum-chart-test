@@ -1,0 +1,18 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.ScatterPlot
+use Libraries.Interface.Controls.Charts.Chart
+
+class ScatterPlotNegativeValueTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Negative1")
+        frame:AddSelectedColumns("Negative2")
+        
+        ScatterPlot chart = frame:ScatterPlot()
+        chart:SetTitle("ScatterPlot Negative Value Test")
+        chart:SetSubtitle("Two Columns")
+        
+        return chart
+    end
+end

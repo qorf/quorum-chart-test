@@ -1,17 +1,18 @@
 use Libraries.Compute.Statistics.DataFrame
-use Libraries.Interface.Controls.Charts.ViolinPlot
+use Libraries.Interface.Controls.Charts.LineChart
 use Libraries.Interface.Controls.Charts.Chart
 
-class ViolinPlotTwoColumnNoFactorTest is ChartTest
+class LineChartAnnotationTest is ChartTest
     action CreateChart() returns Chart
         DataFrame frame
         frame:Load("ChartTestData.csv")
         frame:AddSelectedColumns("Column1")
-        frame:AddSelectedColumns("Column2")
         
-        ViolinPlot chart = frame:ViolinPlot()
-        chart:SetTitle("Two Columns - No Factor")
-
+        LineChart chart = frame:LineChart()
+        chart:SetTitle("LineChart Annotation Test")
+        chart:SetSubtitle("One Column")
+        chart:ShowAnnotations(true)
+        
         return chart
     end
 end

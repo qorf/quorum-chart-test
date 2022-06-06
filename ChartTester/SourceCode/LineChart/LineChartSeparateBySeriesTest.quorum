@@ -1,8 +1,8 @@
 use Libraries.Compute.Statistics.DataFrame
-use Libraries.Interface.Controls.Charts.ViolinPlot
+use Libraries.Interface.Controls.Charts.LineChart
 use Libraries.Interface.Controls.Charts.Chart
 
-class ViolinPlotSetBandWidthTest is ChartTest
+class LineChartSeparateBySeriesTest is ChartTest
     action CreateChart() returns Chart
         DataFrame frame
         frame:Load("ChartTestData.csv")
@@ -10,11 +10,11 @@ class ViolinPlotSetBandWidthTest is ChartTest
         frame:AddSelectedColumns("Column2")
         frame:AddSelectedColumns("Column3")
         
-        ViolinPlot chart = frame:ViolinPlot()
-        chart:SetTitle("Set Band Width To 50")
+        LineChart chart = frame:LineChart()
+        chart:SetTitle("LineChart Separate By Series Test")
         chart:SetSubtitle("Three Columns")
-        chart:SetBandWidth(50)
-
+        chart:SeparateBySeries(3)
+        
         return chart
     end
 end
