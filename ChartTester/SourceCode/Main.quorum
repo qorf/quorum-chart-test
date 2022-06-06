@@ -36,9 +36,9 @@ class Main is Game, KeyboardListener
         LoadPieCharts()
         LoadBoxPlots()
         LoadViolinPlots()
-//        LoadLineCharts()
-//        LoadScatterPlots()
-//        LoadGeoMaps()
+        LoadLineCharts()
+        LoadScatterPlots()
+        LoadGeoMaps()
 
         //other chart types should go in their own array.
         currentChart = bars:Get(index):CreateChart()
@@ -61,10 +61,14 @@ class Main is Game, KeyboardListener
         if event:keyCode = event:UP
             if type < charts:GetSize() - 1
                 type = type + 1
+            else
+                type = 0
             end
         elseif event:keyCode = event:DOWN
             if type > 0
                 type = type - 1
+            else
+                type = charts:GetSize() - 1
             end
         end
 
@@ -76,8 +80,7 @@ class Main is Game, KeyboardListener
         Remove(currentChart)
         currentChart = types:Get(index):CreateChart()
         Add(currentChart)
-        //this currently crashes
-        //currentChart:Save("chart.svg")
+        currentChart:Save("chart.svg")
     end
 
     action LoadBarCharts
@@ -214,86 +217,94 @@ class Main is Game, KeyboardListener
         ViolinPlotOneColumnTwoFactorTest chart2
         ViolinPlotSeparateByFactorHorizontalTest chart3
         ViolinPlotSeparateByFactorTest chart4
-//        BoxPlotSeparateByFactorTest chart5
-//        BoxPlotSeparateBySeriesHorizontalTest chart6
-//        BoxPlotSeparateBySeriesTest chart7
-//        BoxPlotSetColorPaletteTest chart8
-//        BoxPlotTwoColumnNoFactorTest chart9
-//        BoxPlotTwoColumnOneFactorTest chart10
+        ViolinPlotSeparateBySeriesHorizontalTest chart5
+        ViolinPlotSeparateBySeriesTest chart6
+        ViolinPlotSetBandWidthTest chart7
+        ViolinPlotSetColorPaletteTest chart8
+        ViolinPlotSplitPlotHorizontalTest chart9
+        ViolinPlotSplitPlotTest chart10
+        ViolinPlotTwoColumnNoFactorTest chart11
+        ViolinPlotTwoColumnOneFactorTest chart12
 
         violins:Add(chart0)
         violins:Add(chart1)
         violins:Add(chart2)
         violins:Add(chart3)
         violins:Add(chart4)
-//        violins:Add(chart5)
-//        violins:Add(chart6)
-//        violins:Add(chart7)
-//        violins:Add(chart8)
-//        violins:Add(chart9)
-//        violins:Add(chart10)
+        violins:Add(chart5)
+        violins:Add(chart6)
+        violins:Add(chart7)
+        violins:Add(chart8)
+        violins:Add(chart9)
+        violins:Add(chart10)
+        violins:Add(chart11)
+        violins:Add(chart12)
         charts:Add(violins)
     end
 
-//    action LoadLineCharts
-//        BoxPlotHideOutliersTest chart0
-//        BoxPlotHorizontalTest chart1
-//        BoxPlotNegativeValueTest chart2
-//        BoxPlotOneColumnTwoFactorTest chart3
-//        BoxPlotSeparateByFactorHorizontalTest chart4
-//        BoxPlotSeparateByFactorTest chart5
-//        BoxPlotSeparateBySeriesHorizontalTest chart6
-//        BoxPlotSeparateBySeriesTest chart7
-//        BoxPlotSetColorPaletteTest chart8
-//        BoxPlotTwoColumnNoFactorTest chart9
-//        BoxPlotTwoColumnOneFactorTest chart10
-//
-//        lines:Add(chart0)
-//        lines:Add(chart1)
-//        lines:Add(chart2)
-//        lines:Add(chart3)
-//        lines:Add(chart4)
-//        lines:Add(chart5)
-//        lines:Add(chart6)
-//        lines:Add(chart7)
-//        lines:Add(chart8)
-//        lines:Add(chart9)
-//        lines:Add(chart10)
-//        charts:Add(lines)
-//    end
+    action LoadLineCharts
+        LineChartAnnotationTest chart0
+        LineChartDateFactorTest chart1
+        LineChartFlipOrientationTest chart2
+        LineChartHideAllPointsTest chart3
+        LineChartLinearRegressionFlipOrientationTest chart4
+        LineChartLinearRegressionTest chart5
+        LineChartNegativeValueTest chart6
+        LineChartSeparateBySeriesFlipOrientationTest chart7
+        LineChartSeparateBySeriesTest chart8
+        LineChartSetColorPaletteTest chart9
+        LineChartSetLineDensityTest chart10
+        LineChartSetPointDensityTest chart11
+        LineChartTwoColumnsNoSeparationTest chart12
 
-//    action LoadScatterPlots
-//        BoxPlotHideOutliersTest chart0
-//        BoxPlotHorizontalTest chart1
-//        BoxPlotNegativeValueTest chart2
-//        BoxPlotOneColumnTwoFactorTest chart3
-//        BoxPlotSeparateByFactorHorizontalTest chart4
-//        BoxPlotSeparateByFactorTest chart5
-//        BoxPlotSeparateBySeriesHorizontalTest chart6
-//        BoxPlotSeparateBySeriesTest chart7
-//        BoxPlotSetColorPaletteTest chart8
-//        BoxPlotTwoColumnNoFactorTest chart9
-//        BoxPlotTwoColumnOneFactorTest chart10
-//
-//        scats:Add(chart0)
-//        scats:Add(chart1)
-//        scats:Add(chart2)
-//        scats:Add(chart3)
-//        scats:Add(chart4)
-//        scats:Add(chart5)
-//        scats:Add(chart6)
-//        scats:Add(chart7)
-//        scats:Add(chart8)
-//        scats:Add(chart9)
-//        scats:Add(chart10)
-//        charts:Add(scats)
-//    end
+        lines:Add(chart0)
+        lines:Add(chart1)
+        lines:Add(chart2)
+        lines:Add(chart3)
+        lines:Add(chart4)
+        lines:Add(chart5)
+        lines:Add(chart6)
+        lines:Add(chart7)
+        lines:Add(chart8)
+        lines:Add(chart9)
+        lines:Add(chart10)
+        lines:Add(chart11)
+        lines:Add(chart12)
+        charts:Add(lines)
+    end
+
+    action LoadScatterPlots
+        ScatterPlotAnnotationTest chart0
+        ScatterPlotFlipOrientationTest chart1
+        ScatterPlotLinearRegressionTest chart2
+        ScatterPlotNegativeValueTest chart3
+        ScatterPlotNonNumberColumnTest chart4
+        ScatterPlotSeparateByFactorTest chart5
+        ScatterPlotSeparateBySeriesLinearRegressionTest chart6
+        ScatterPlotSeparateBySeriesTest chart7
+        ScatterPlotSetColorPaletteTest chart8
+        ScatterPlotSetPointDensityTest chart9
+        ScatterPlotTwoColumnOneFactorTest chart10
+
+        scats:Add(chart0)
+        scats:Add(chart1)
+        scats:Add(chart2)
+        scats:Add(chart3)
+        scats:Add(chart4)
+        scats:Add(chart5)
+        scats:Add(chart6)
+        scats:Add(chart7)
+        scats:Add(chart8)
+        scats:Add(chart9)
+        scats:Add(chart10)
+        charts:Add(scats)
+    end
 
     action LoadGeoMaps
 
     end
 
     action Update(number seconds)
-
+        currentChart:Save("chart.svg")
     end
 end

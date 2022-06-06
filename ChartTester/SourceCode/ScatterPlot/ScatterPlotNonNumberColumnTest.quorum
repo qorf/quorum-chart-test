@@ -1,0 +1,18 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.ScatterPlot
+use Libraries.Interface.Controls.Charts.Chart
+
+class ScatterPlotNonNumberColumnTest is ChartTest
+    action CreateChart() returns Chart
+        DataFrame frame
+        frame:Load("ChartTestData.csv")
+        frame:AddSelectedColumns("Factor1")
+        frame:AddSelectedColumns("Date1")
+        
+        ScatterPlot chart = frame:ScatterPlot()
+        chart:SetTitle("ScatterPlot Non-Number Column Test")
+        chart:SetSubtitle("Two Columns")
+        
+        return chart
+    end
+end
