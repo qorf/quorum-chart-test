@@ -50,26 +50,29 @@ class Main is Game, KeyboardListener
     action PressedKey(KeyboardEvent event)
         //I think up left and right should go through the chart indices
         //up and down for the chart types. That way we can flip through them all easily.
-        if event:keyCode = event:RIGHT
+        if event:keyCode = event:D
             index = index + 1
-        elseif event:keyCode = event:LEFT
+        elseif event:keyCode = event:A
             if index > 0
                 index = index - 1
             end
         end
 
-        if event:keyCode = event:UP
+        if event:keyCode = event:W
             if type < charts:GetSize() - 1
                 type = type + 1
             else
                 type = 0
             end
-        elseif event:keyCode = event:DOWN
+        elseif event:keyCode = event:S
             if type > 0
                 type = type - 1
             else
                 type = charts:GetSize() - 1
             end
+        elseif event:keyCode = event:ENTER
+            currentChart:Focus()
+            return now
         end
 
         //get the current type

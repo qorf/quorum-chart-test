@@ -3,7 +3,6 @@ use Libraries.Interface.Item
 class FocusManagerTest is FocusManager
     action SetFocus(Item focusItem)
         parent:FocusManager:SetFocus(focusItem)
-
-        output "Testing: " + focusItem:GetName()
+        output focusItem:GetName() + ": " + focusItem:GetDescription()
     end
 end
