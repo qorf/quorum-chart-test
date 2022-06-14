@@ -17,6 +17,7 @@ class Main is Game, KeyboardListener
     Chart currentChart = undefined
     integer index = 0
     integer type = 0
+    boolean written = false
 
     action Main
         StartGame()
@@ -81,6 +82,8 @@ class Main is Game, KeyboardListener
         Remove(currentChart)
         currentChart = types:Get(index):CreateChart()
         Add(currentChart)
+
+        written = false
     end
 
     action LoadBarCharts
@@ -305,6 +308,9 @@ class Main is Game, KeyboardListener
     end
 
     action Update(number seconds)
-        currentChart:Save("chart.svg")
+        if written = false
+            currentChart:Save("chart.svg")
+            written = true
+        end
     end
 end
