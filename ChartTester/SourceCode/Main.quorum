@@ -18,6 +18,7 @@ class Main is Game, KeyboardListener
     integer index = 0
     integer type = 0
     boolean written = false
+    integer svgDelay = 0 //the chart is not fully setup when it was writing in the first frame, so I'm giving it some delay
 
     action Main
         StartGame()
@@ -84,6 +85,7 @@ class Main is Game, KeyboardListener
         Add(currentChart)
 
         written = false
+        svgDelay = 0
     end
 
     action LoadBarCharts
@@ -308,9 +310,12 @@ class Main is Game, KeyboardListener
     end
 
     action Update(number seconds)
-        if written = false
-            currentChart:Save("chart.svg")
+        if written = false and svgDelay > 5
+            currentChart:Save(currentChart:GetTitle() + ".svg")
             written = true
+            svgDelay = 0
+        elseif written = false
+            svgDelay = svgDelay + 1
         end
     end
 end
