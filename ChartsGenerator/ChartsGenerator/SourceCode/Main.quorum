@@ -1,20 +1,14 @@
 use Libraries.Compute.Statistics.DataFrame
 use Libraries.Game.Game
-use Libraries.Game.Game
 use Libraries.Containers.Array
 use Libraries.Interface.Controls.Charts.Chart
-use Libraries.Interface.Events.KeyboardListener
-use Libraries.Interface.Events.KeyboardEvent
 use Libraries.Interface.Layouts.ManualLayout
 
 /*
-    This is an example of a simple Bar Chart in quorum
-    Here we will be totaling the various costs of night out activities in different countries
-    and comparing them to each other to view which country is the most expensive in terms of having a night out.
-    In the data, various activities include watching a movie, getting dinner, transportation, etc.
+    SVG generator for online tutorials.
 */
 
-class Main is Game, KeyboardListener
+class Main is Game
 
     Array<Test> chartsArr
     Chart currentChart = undefined
@@ -38,35 +32,7 @@ class Main is Game, KeyboardListener
         //other chart types should go in their own array.
         currentChart = chartsArr:Get(index):GenerateChart()
         Add(currentChart)
-        KeyboardListener e
-        AddKeyboardListener(me)
-
     end
-
-/*
-action PressedKey(KeyboardEvent event)
-        //I think up left and right should go through the chart indices
-        //up and down for the chart types. That way we can flip through them all easily.
-        if event:keyCode = event:D
-            if index < chartsArr:GetSize() - 1 
-                index = index + 1
-            end
-        elseif event:keyCode = event:A
-            if index > 0
-                index = index - 1
-            end
-        else 
-            return now
-        end
-
-        //get the current type and swap them, as this is a swapping key
-        //not a normal chart key
-        Remove(currentChart)
-        currentChart = chartsArr:Get(index)
-        Add(currentChart)
-
-    end
-*/
 
     action LoadCharts
 
