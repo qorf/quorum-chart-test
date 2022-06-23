@@ -2,3 +2,5 @@ Run/
 Build/
 *.DS_Store
 *.svg
+*.bin
+*.dat
