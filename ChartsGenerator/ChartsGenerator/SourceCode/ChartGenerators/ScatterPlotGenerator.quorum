@@ -1,0 +1,51 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.ScatterPlot
+use Libraries.Interface.Controls.Charts.Chart
+
+class ScatterPlotGenerator is Test
+    action GenerateChart returns Chart
+
+        /*
+            This is an example of a simple scatter plot in quorum.
+            The data collected is about medical insurance costs in relation to BMI (body mass index).
+        */
+        
+        // create dataframe to read in data
+        DataFrame frame
+        frame:Load("/SourceCode/Data/Science/insurance.csv")
+        
+        // pull out selected data, for this we will be catagorizing by bmi, charges, and age
+        frame:AddSelectedColumns("bmi")
+        frame:AddSelectedColumns("charges")
+        frame:AddSelectedFactors("age")
+        
+        // using the data frame, format data by creating a scatter plot chart component
+        ScatterPlot chart = frame:ScatterPlot()
+        
+        // label your scatter plot
+        chart:SetXAxisTitle("Body Mass Index (BMI)")
+        chart:SetYAxisTitle("Insurance Cost (in $)")
+        chart:SetLegendTitle("Age Group")
+        chart:SetTitle("Charges of Insurance Based Off of BMI and Age")
+        // add subtitle for more description
+        chart:SetSubtitle("Does body weight and age affect cost of insurance?")
+        
+        // set the legend location, choices are left, right, top and bottom
+        chart:SetLegendLocation("bottom")
+        
+        // show regression line trends
+        chart:ShowLinearRegression(true) 
+        
+        // color palette contains yellows, oranges, browns, and greens
+        chart:SetColorPaletteToDisturbing()
+        
+        // adjust font size by preference, here we set it to 30 pt
+        chart:SetFontSize(30)
+        
+        // if we would like to switch the x and y axis
+        chart:FlipOrientation()
+        
+        return chart
+
+    end
+end

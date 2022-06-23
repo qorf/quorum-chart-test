@@ -1,0 +1,6 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Interface.Controls.Charts.Chart
+ 
+class Test
+    blueprint action GenerateChart returns Chart
+end

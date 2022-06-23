@@ -1,0 +1,77 @@
+use Libraries.Compute.Statistics.DataFrame
+use Libraries.Game.Game
+use Libraries.Game.Game
+use Libraries.Containers.Array
+use Libraries.Interface.Controls.Charts.Chart
+use Libraries.Interface.Events.KeyboardListener
+use Libraries.Interface.Events.KeyboardEvent
+use Libraries.Interface.Layouts.ManualLayout
+
+/*
+    This is an example of a simple Bar Chart in quorum
+    Here we will be totaling the various costs of night out activities in different countries
+    and comparing them to each other to view which country is the most expensive in terms of having a night out.
+    In the data, various activities include watching a movie, getting dinner, transportation, etc.
+*/
+
+class GenerateCharts is Game
+
+    Array<Chart> chartsArr
+    Chart currentChart = undefined
+    integer index = 0
+
+    action Main
+        StartGame()
+    end
+
+    action CreateGame     
+
+        ManualLayout layout
+        SetLayout(layout)
+        
+        SetScreenSize(1000,1000)
+        LoadCharts()
+
+        //other chart types should go in their own array.
+        currentChart = chartsArr:Get(index)
+        Add(currentChart)
+
+    end
+
+    action LoadCharts
+
+        BarChartGenerator barChartGenerator
+        HistogramGenerator histogramGenerator
+        PieChartGenerator pieChartGenerator
+        LineChartGenerator lineChartGenerator
+        ScatterPlotGenerator scatterPlotGenerator
+        BoxPlotGenerator boxPlotGenerator
+        ViolinPlotGenerator violinPlotGenerator
+        
+        Chart chart0 = barChartGenerator:GenerateChart()
+        Chart chart1 = histogramGenerator:GenerateChart()
+        Chart chart2 = pieChartGenerator:GenerateChart()
+        Chart chart3 = lineChartGenerator:GenerateChart()
+        Chart chart4 = scatterPlotGenerator:GenerateChart()
+        Chart chart5 = boxPlotGenerator:GenerateChart()
+        Chart chart6 = violinPlotGenerator:GenerateChart()
+
+        chartsArr:Add(chart0)
+        chartsArr:Add(chart1)
+        chartsArr:Add(chart2)
+        chartsArr:Add(chart3)
+        chartsArr:Add(chart4)
+        chartsArr:Add(chart5)
+        chartsArr:Add(chart6)
+
+    end
+
+    action Update(number seconds)
+
+    end
+    
+
+end
+
+
+
