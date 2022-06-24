@@ -3,6 +3,11 @@ use Libraries.Interface.Controls.Charts.ScatterPlot
 use Libraries.Interface.Controls.Charts.Chart
 
 class ScatterPlotGenerator is Test
+    text name = "scatterplot1"
+    action GetName returns text
+        return name
+    end
+
     action GenerateChart returns Chart
         
         /*

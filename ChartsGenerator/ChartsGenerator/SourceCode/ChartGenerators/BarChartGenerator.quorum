@@ -4,6 +4,11 @@ use Libraries.Interface.Controls.Charts.Chart
 
 
 class BarChartGenerator is Test
+    text name = "barchart1"
+    action GetName returns text
+        return name
+    end
+
     action GenerateChart returns Chart
 
         // Create a DataFrame to hold the data.
@@ -47,6 +52,8 @@ class BarChartGenerator is Test
         
         // Give the legend a descriptive title.
         chart:SetLegendTitle("Activity")
+
+        chart:SetXLabelFontSize(12)
         
 
         return chart

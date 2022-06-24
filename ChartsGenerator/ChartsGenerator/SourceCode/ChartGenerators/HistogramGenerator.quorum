@@ -3,6 +3,11 @@ use Libraries.Interface.Controls.Charts.Histogram
 use Libraries.Interface.Controls.Charts.Chart
 
 class HistogramGenerator is Test
+    text name = "histogram2"
+    action GetName returns text
+        return name
+    end
+
     action GenerateChart returns Chart       
         /*
             This is an example of a Histogram built in quorum.

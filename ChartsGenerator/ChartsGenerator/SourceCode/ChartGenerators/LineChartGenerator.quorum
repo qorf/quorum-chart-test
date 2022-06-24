@@ -3,6 +3,11 @@ use Libraries.Interface.Controls.Charts.LineChart
 use Libraries.Interface.Controls.Charts.Chart
 
 class LineChartGenerator is Test
+    text name = "linechart1"
+    action GetName returns text
+        return name
+    end
+
     action GenerateChart returns Chart
 
         /*

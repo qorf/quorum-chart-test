@@ -12,6 +12,7 @@ class Main is Game
 
     Array<Test> chartsArr
     Chart currentChart = undefined
+    text currentName = ""
     
     integer index = 0
     integer svgDelay = 0
@@ -31,6 +32,7 @@ class Main is Game
         
         //other chart types should go in their own array.
         currentChart = chartsArr:Get(index):GenerateChart()
+        currentName = chartsArr:Get(index):GetName()
         Add(currentChart)
     end
 
@@ -59,11 +61,12 @@ class Main is Game
             currentChart:SetColorPaletteToColorgorical() // Reset colors
             Remove(currentChart)
             currentChart = chartsArr:Get(index):GenerateChart()
+            currentName = chartsArr:Get(index):GetName()
             Add(currentChart)
             svgDelay = 0
         else 
             svgDelay = svgDelay + 1
-            currentChart:Save("/SourceCode/charts" + index + ".svg")
+            currentChart:Save("/SourceCode/" +currentName+ ".svg")
             if index >=chartsArr:GetSize() - 1  and svgDelay > delay
                 Exit()
             end
