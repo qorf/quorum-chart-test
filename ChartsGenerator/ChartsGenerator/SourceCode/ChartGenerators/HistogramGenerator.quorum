@@ -3,7 +3,7 @@ use Libraries.Interface.Controls.Charts.Histogram
 use Libraries.Interface.Controls.Charts.Chart
 
 class HistogramGenerator is Test
-    text name = "histogram2"
+    text name = "histogramtutorial"
     action GetName returns text
         return name
     end

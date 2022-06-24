@@ -3,7 +3,7 @@ use Libraries.Interface.Controls.Charts.PieChart
 use Libraries.Interface.Controls.Charts.Chart
 
 class PieChartGenerator is Test
-    text name = "piechart3"
+    text name = "piecharttutorial"
     action GetName returns text
         return name
     end

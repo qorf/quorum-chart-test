@@ -4,7 +4,7 @@ use Libraries.Interface.Controls.Charts.Chart
 
 
 class BarChartGenerator is Test
-    text name = "barchart1"
+    text name = "barcharttutorial"
     action GetName returns text
         return name
     end

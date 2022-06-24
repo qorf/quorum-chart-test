@@ -3,7 +3,7 @@ use Libraries.Interface.Controls.Charts.BoxPlot
 use Libraries.Interface.Controls.Charts.Chart
 
 class BoxPlotGenerator is Test
-    text name = "BoxExample1"
+    text name = "boxplottutorial"
     action GetName returns text
         return name
     end

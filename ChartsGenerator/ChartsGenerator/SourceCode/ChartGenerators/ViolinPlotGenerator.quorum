@@ -3,7 +3,7 @@ use Libraries.Interface.Controls.Charts.ViolinPlot
 use Libraries.Interface.Controls.Charts.Chart
 
 class ViolinPlotGenerator is Test
-    text name = "violionchart1"
+    text name = "violincharttutorial"
     action GetName returns text
         return name
     end
