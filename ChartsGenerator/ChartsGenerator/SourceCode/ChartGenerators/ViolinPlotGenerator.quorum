@@ -46,7 +46,7 @@ class ViolinPlotGenerator is Test
         // If needed, you can change the legend location to either left, right, top or bottom. 
         // By default, the legend is displayed on the right when showing.
         chart:SetLegendLocationToBottom()
-        
+
         // If needed, you can change the color palette to a predefined palette or create a custom one.
         chart:SetColorPaletteToDisturbing()
         
